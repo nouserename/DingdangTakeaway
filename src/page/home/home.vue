@@ -2,17 +2,17 @@
       <div>
           <!-- head -->
         <head-top signin-up='home'>
-            <!-- ÓÃ slot='logo' ·Ö·¢Ò»¸ö±¾Ò³ÃæÌØ¶¨µÄ Í·²¿Ïî logo  µã»÷ logo ÖØÔØÒ³Ãæ-->
+            <!-- ç”¨ slot='logo' åˆ†å‘ä¸€ä¸ªæœ¬é¡µé¢ç‰¹å®šçš„ å¤´éƒ¨é¡¹ logo  ç‚¹å‡» logo é‡è½½é¡µé¢-->
             <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
         </head-top>
           <!-- head -->
           <!-- city-list -->
         <nav class="city_nav">
             <div class="city_tip">
-                <span>µ±Ç°¶¨Î»³ÇÊÐ£º</span>
-                <span>¶¨Î»²»×¼Ê±£¬ÇëÔÚ³ÇÊÐÁÐ±íÖÐÑ¡Ôñ</span>
+                <span>å½“å‰å®šä½åŸŽå¸‚ï¼š</span>
+                <span>å®šä½ä¸å‡†æ—¶ï¼Œè¯·åœ¨åŸŽå¸‚åˆ—è¡¨ä¸­é€‰æ‹©</span>
             </div>
-            <!-- guessCity ºóÌ¨api ip×Ô¶¯¶¨Î»³ÇÊÐ µã»÷³ÇÊÐÇÐ»»µ½ÏêÏ¸µØÖ·Ñ¡ÔñÒ³-->
+            <!-- guessCity åŽå°api ipè‡ªåŠ¨å®šä½åŸŽå¸‚ ç‚¹å‡»åŸŽå¸‚åˆ‡æ¢åˆ°è¯¦ç»†åœ°å€é€‰æ‹©é¡µ-->
             <router-link :to="'/city/' + guessCityid" class="guess_city">
                 <span>{{guessCity}}</span>
                 <svg class="arrow_right">
@@ -20,25 +20,25 @@
                 </svg>
             </router-link>
         </nav>
-        <!-- ÈÈÃÅ³ÇÊÐÁÐ±í -->
+        <!-- çƒ­é—¨åŸŽå¸‚åˆ—è¡¨ -->
         <section id="hot_city_container">
-            <h4 class="city_title">ÈÈÃÅ³ÇÊÐ</h4>
+            <h4 class="city_title">çƒ­é—¨åŸŽå¸‚</h4>
             <ul class="citylistul clear">
-            <!-- :to="'/city/' + item.id"  µã»÷³ÇÊÐÇÐ»»µ½ÏêÏ¸µØÖ·Ñ¡ÔñÒ³ -->
+            <!-- :to="'/city/' + item.id"  ç‚¹å‡»åŸŽå¸‚åˆ‡æ¢åˆ°è¯¦ç»†åœ°å€é€‰æ‹©é¡µ -->
                 <router-link  tag="li" v-for="item in hotcity" :to="'/city/' + item.id" :key="item.id">
                     {{item.name}}
                 </router-link>
             </ul>
         </section>
-        <!-- È«²¿³ÇÊÐÁÐ±í -->
+        <!-- å…¨éƒ¨åŸŽå¸‚åˆ—è¡¨ -->
         <section class="group_city_container" ref="wrapperMenu">
             <ul class="letter_classify">
                 <li v-for="(value, key, index) in sortgroupcity" :key="key"  class="letter_classify_li">
                     <h4 class="city_title">{{key}}
-                        <span v-if="index == 0">£¨°´×ÖÄ¸ÅÅÐò£©</span>
+                        <span v-if="index == 0">ï¼ˆæŒ‰å­—æ¯æŽ’åºï¼‰</span>
                     </h4>
                     <ul class="groupcity_name_container citylistul clear">
-                        <!-- ±éÀúºóÌ¨»ñÈ¡µÄ³ÇÊÐÊý¾Ý -->
+                        <!-- éåŽ†åŽå°èŽ·å–çš„åŸŽå¸‚æ•°æ® -->
                         <router-link  tag="li" v-for="item in value" :to="'/city/' + item.id" :key="item.id" class="ellipsis">
                             {{item.name}}
                         </router-link>
@@ -50,46 +50,46 @@
 </template>
 
 <script>
-//ÒýÈë head ×é¼þ
+//å¼•å…¥ head ç»„ä»¶
 import headTop from '../../components/header/head'
-//ÒýÈë·â×°ºÃµÄ ajax ÇëÇó
+//å¼•å…¥å°è£…å¥½çš„ ajax è¯·æ±‚
 import {cityGuess, hotcity, groupcity} from '../../service/getData'
 
 export default {
     data(){
         return{
-            guessCity: '',   //µ±Ç°³ÇÊÐ
-            guessCityid: '', //µ±Ç°³ÇÊÐid
-            hotcity: [],     //ÈÈÃÅ³ÇÊÐÁÐ±í
-            groupcity: {},   //ËùÓÐ³ÇÊÐÁÐ±í
+            guessCity: '',   //å½“å‰åŸŽå¸‚
+            guessCityid: '', //å½“å‰åŸŽå¸‚id
+            hotcity: [],     //çƒ­é—¨åŸŽå¸‚åˆ—è¡¨
+            groupcity: {},   //æ‰€æœ‰åŸŽå¸‚åˆ—è¡¨
         }
     },
 
-    //Êý¾ÝÇëÇó ÔÚdom¹ÒÔØºó ÔÙ½øÐÐÒì²½ÇëÇó
+    //æ•°æ®è¯·æ±‚ åœ¨domæŒ‚è½½åŽ å†è¿›è¡Œå¼‚æ­¥è¯·æ±‚
     mounted(){
-        // »ñÈ¡µ±Ç°³ÇÊÐ £¬promise Ö±½Ó then ¾Í¿ÉÒÔ»ñÈ¡»Øµ÷Êý¾Ý
+        // èŽ·å–å½“å‰åŸŽå¸‚ ï¼Œpromise ç›´æŽ¥ then å°±å¯ä»¥èŽ·å–å›žè°ƒæ•°æ®
         cityGuess().then(res => {
             this.guessCity = res.name;
             this.guessCityid = res.id;
         })
 
-        //»ñÈ¡ÈÈÃÅ³ÇÊÐ
+        //èŽ·å–çƒ­é—¨åŸŽå¸‚
         hotcity().then(res => {
             this.hotcity = res;
         })
 
-        //»ñÈ¡ËùÓÐ³ÇÊÐ
+        //èŽ·å–æ‰€æœ‰åŸŽå¸‚
         groupcity().then(res => {
             this.groupcity = res;
         })
     },
-   //×¢²á×é¼þ £¬×¢²áÁË²ÅÄÜÊ¹ÓÃ
+   //æ³¨å†Œç»„ä»¶ ï¼Œæ³¨å†Œäº†æ‰èƒ½ä½¿ç”¨
     components:{
         headTop
     },
 
     computed:{
-        //½«»ñÈ¡µÄÊý¾Ý°´ÕÕA-Z×ÖÄ¸¿ªÍ·ÅÅÐò
+        //å°†èŽ·å–çš„æ•°æ®æŒ‰ç…§A-Zå­—æ¯å¼€å¤´æŽ’åº
         sortgroupcity(){
             let sortobj = {};
             for (let i = 65; i <= 90; i++) {
@@ -102,7 +102,7 @@ export default {
     },
 
     methods:{
-        //µã»÷Í¼±êË¢ÐÂÒ³Ãæ
+        //ç‚¹å‡»å›¾æ ‡åˆ·æ–°é¡µé¢
         reload(){
             window.location.reload();
         },

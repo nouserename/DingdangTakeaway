@@ -13,7 +13,7 @@ export default new Router({
     component: App,
     children:[
       {
-        path:'',//µØÖ·Îª¿ÕÊ±£¬×Ô¶¯Ìø×ªµ½ /home
+        path:'',//åœ°å€ä¸ºç©ºæ—¶ï¼Œè‡ªåŠ¨è·³è½¬åˆ° /home
         redirect:'/home'
       },
       {
@@ -21,7 +21,7 @@ export default new Router({
         component:home
       },
       {
-        //home Ò³Ãæ »á½«³ÇÊĞµÄ cityid ´«¸ø cityÒ³£¬ÔÚÂ·ÓÉÖĞÖ¸Ã÷²ÎÊı cityid
+        //home é¡µé¢ ä¼šå°†åŸå¸‚çš„ cityid ä¼ ç»™ cityé¡µï¼Œåœ¨è·¯ç”±ä¸­æŒ‡æ˜å‚æ•° cityid
         path:'/city/:cityid',
         component:city
       }

@@ -8,7 +8,7 @@
             </svg>
         </section>
         <router-link to="/login" v-if='signinUp' class="head_login">
-            <span class="login_span">��¼|ע��</span>
+            <span class="login_span">登录|注册</span>
         </router-link>
         <section class="title_head ellipsis" v-if="headTitle">
             <span class="title_text">{{headTitle}}</span>
@@ -27,7 +27,7 @@
 
             }
         },
-        //���ܸ���������� props ��ȷ��ͷ��չʾ��Щ��Ϣ
+        //接受父组件传来的 props 来确认头部展示那些信息
         props: ['signinUp', 'headTitle', 'goBack'],
     }
 

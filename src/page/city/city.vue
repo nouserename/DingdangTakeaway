@@ -1,61 +1,61 @@
 <template>
       <div class="city_container">
-        <!-- head ±¾Ò³Ãæhead ÓĞ±êÌâ£¬Ê¹ÓÃ props ´«¸ø×é¼şäÖÈ¾ -->
-        <!-- html ¶Ô±êÇ©Ãû×Ö´óĞ¡Ğ´²»Ãô¸Ğ£¬ËùÒÔÒª°Ñ headTop ÍÕ·åÃüÃû£¬Ğ´³É¶Ì»®ÏßĞÎÊ½ head-top -->
+        <!-- head æœ¬é¡µé¢head æœ‰æ ‡é¢˜ï¼Œä½¿ç”¨ props ä¼ ç»™ç»„ä»¶æ¸²æŸ“ -->
+        <!-- html å¯¹æ ‡ç­¾åå­—å¤§å°å†™ä¸æ•æ„Ÿï¼Œæ‰€ä»¥è¦æŠŠ headTop é©¼å³°å‘½åï¼Œå†™æˆçŸ­åˆ’çº¿å½¢å¼ head-top -->
         <head-top :head-title="cityname" go-back='true'>
-            <router-link to="/home" slot="changecity" class="change_city">ÇĞ»»³ÇÊĞ</router-link>
+            <router-link to="/home" slot="changecity" class="change_city">åˆ‡æ¢åŸå¸‚</router-link>
         </head-top>
-        <!-- v-on:submit.prevent ÊÂ¼şĞŞÊÎ·û ×èÖ¹±íµ¥Ìá½»Ä¬ÈÏÌø×ªĞĞÎª -->
+        <!-- v-on:submit.prevent äº‹ä»¶ä¿®é¥°ç¬¦ é˜»æ­¢è¡¨å•æäº¤é»˜è®¤è·³è½¬è¡Œä¸º -->
         <form class="city_form" v-on:submit.prevent>
             <div>
-            <!-- Ê¹ÓÃ v-model Ë«Ïò°ó¶¨±íµ¥Êı¾İ·½±ãÊı¾İÊÕ¼¯ -->
-                <input type="search" name="city" placeholder="ÊäÈëÑ§Ğ£¡¢ÉÌÎñÂ¥¡¢µØÖ·" class="city_input input_style" required v-model='inputVaule'>
+            <!-- ä½¿ç”¨ v-model åŒå‘ç»‘å®šè¡¨å•æ•°æ®æ–¹ä¾¿æ•°æ®æ”¶é›† -->
+                <input type="search" name="city" placeholder="è¾“å…¥å­¦æ ¡ã€å•†åŠ¡æ¥¼ã€åœ°å€" class="city_input input_style" required v-model='inputVaule'>
             </div>
             <div>
-                <input type="submit" name="submit" class="city_submit input_style" @click='postpois' value="Ìá½»">
+                <input type="submit" name="submit" class="city_submit input_style" @click='postpois' value="æäº¤">
             </div>
         </form>
-        <!-- ´Ó localstorage ½«´æÈëµÄËÑË÷ÀúÊ· Õ¹ÏÖ³öÀ´ -->
-        <header v-if="historytitle" class="pois_search_history">ËÑË÷ÀúÊ·</header>
+        <!-- ä» localstorage å°†å­˜å…¥çš„æœç´¢å†å² å±•ç°å‡ºæ¥ -->
+        <header v-if="historytitle" class="pois_search_history">æœç´¢å†å²</header>
         <ul class="getpois_ul">
-            <!-- ±éÀú¸ù¾İµØÖ·¹Ø¼ü´ÊËÑË÷µÄµØÖ· placelistÎªºóÌ¨¸ù¾İ¹Ø¼ü×ÖËÑË÷·µ»ØµÄÊı¾İ-->
-            <!-- µã»÷È·ÈÏÑ¡ÔñµØÖ·ºó Ìø×ªµ½ÍâÂôÒ³ nextpage Ê¹ÓÃjs²Ù×÷Â·ÓÉÇĞ»» this.$router.push({path:'/msite', query:{geohash}})  Ìø×ªµ½ /msite »¹ÂòĞ´Õâ¸öÒ³Ãæ ÏÂ¸öÊµÑé½øĞĞ¾ßÌåÊµÏÖÍâÂôÒ³-->
+            <!-- éå†æ ¹æ®åœ°å€å…³é”®è¯æœç´¢çš„åœ°å€ placelistä¸ºåå°æ ¹æ®å…³é”®å­—æœç´¢è¿”å›çš„æ•°æ®-->
+            <!-- ç‚¹å‡»ç¡®è®¤é€‰æ‹©åœ°å€å è·³è½¬åˆ°å¤–å–é¡µ nextpage ä½¿ç”¨jsæ“ä½œè·¯ç”±åˆ‡æ¢ this.$router.push({path:'/msite', query:{geohash}})  è·³è½¬åˆ° /msite è¿˜ä¹°å†™è¿™ä¸ªé¡µé¢ ä¸‹ä¸ªå®éªŒè¿›è¡Œå…·ä½“å®ç°å¤–å–é¡µ-->
             <li v-for="(item, index) in placelist" @click='nextpage(index, item.geohash)' :key="index">
                 <h4 class="pois_name ellipsis">{{item.name}}</h4>
                 <p class="pois_address ellipsis">{{item.address}}</p>
             </li>
         </ul>
-        <!-- Çå¿ÕËùÓĞ ËÑË÷ÀúÊ· -->
-        <footer v-if="historytitle&&placelist.length" class="clear_all_history" @click="clearAll">Çå¿ÕËùÓĞ</footer>
-        <div class="search_none_place" v-if="placeNone">ºÜ±§Ç¸£¡ÎŞËÑË÷½á¹û</div>
+        <!-- æ¸…ç©ºæ‰€æœ‰ æœç´¢å†å² -->
+        <footer v-if="historytitle&&placelist.length" class="clear_all_history" @click="clearAll">æ¸…ç©ºæ‰€æœ‰</footer>
+        <div class="search_none_place" v-if="placeNone">å¾ˆæŠ±æ­‰ï¼æ— æœç´¢ç»“æœ</div>
     </div>
 </template>
 
 <script>
     import headTop from '../../components/header/head'
     import {currentcity, searchplace} from '../../service/getData'
-    //ÒıÈëÊµÑé¶ş ·â×°µÄ localstorage ¹¤¾ß
+    //å¼•å…¥å®éªŒäºŒ å°è£…çš„ localstorage å·¥å…·
     import {getStore, setStore, removeStore} from '../../config/mUtils'
 
     export default {
         data(){
             return{
-                inputVaule:'', // ËÑË÷µØÖ·
-                cityid:'', // µ±Ç°³ÇÊĞid
-                cityname:'', // µ±Ç°³ÇÊĞÃû×Ö
-                placelist:[], // ËÑË÷³ÇÊĞÁĞ±í
-                placeHistory:[], // ÀúÊ·ËÑË÷¼ÇÂ¼
-                historytitle: true, // Ä¬ÈÏÏÔÊ¾ËÑË÷ÀúÊ·Í·²¿£¬µã»÷ËÑË÷ºóÒş²Ø
-                placeNone: false, // ËÑË÷ÎŞ½á¹û£¬ÏÔÊ¾ÌáÊ¾ĞÅÏ¢
+                inputVaule:'', // æœç´¢åœ°å€
+                cityid:'', // å½“å‰åŸå¸‚id
+                cityname:'', // å½“å‰åŸå¸‚åå­—
+                placelist:[], // æœç´¢åŸå¸‚åˆ—è¡¨
+                placeHistory:[], // å†å²æœç´¢è®°å½•
+                historytitle: true, // é»˜è®¤æ˜¾ç¤ºæœç´¢å†å²å¤´éƒ¨ï¼Œç‚¹å‡»æœç´¢åéšè—
+                placeNone: false, // æœç´¢æ— ç»“æœï¼Œæ˜¾ç¤ºæç¤ºä¿¡æ¯
             }
         },
 
         mounted(){
-            //home Ò³ ´«¹ıÀ´µÄ²ÎÊı guessCityid
+            //home é¡µ ä¼ è¿‡æ¥çš„å‚æ•° guessCityid
             // <router-link :to="'/city/' + guessCityid" class="guess_city">
             // </router-link>
             this.cityid = this.$route.params.cityid;
-            //»ñÈ¡µ±Ç°³ÇÊĞÃû×Ö
+            //è·å–å½“å‰åŸå¸‚åå­—
             currentcity(this.cityid).then(res => {
                 this.cityname = res.name;
             })
@@ -72,16 +72,16 @@
 
         methods:{
             initData(){
-                //»ñÈ¡ËÑË÷ÀúÊ·¼ÇÂ¼
+                //è·å–æœç´¢å†å²è®°å½•
                 if (getStore('placeHistory')) {
                     this.placelist = JSON.parse(getStore('placeHistory'));
                 }else{
                     this.placelist = [];
                 }
             },
-            //·¢ËÍËÑË÷ĞÅÏ¢inputVaule
+            //å‘é€æœç´¢ä¿¡æ¯inputVaule
             postpois(){
-                //ÊäÈëÖµ²»Îª¿ÕÊ±²Å·¢ËÍĞÅÏ¢
+                //è¾“å…¥å€¼ä¸ä¸ºç©ºæ—¶æ‰å‘é€ä¿¡æ¯
                 if (this.inputVaule) {
                     searchplace(this.cityid, this.inputVaule).then(res => {
                         this.historytitle = false;
@@ -91,8 +91,8 @@
                 }
             },
             /**
-             * µã»÷ËÑË÷½á¹û½øÈëÏÂÒ»Ò³ÃæÊ±½øĞĞÅĞ¶ÏÊÇ·ñÒÑ¾­ÓĞÒ»ÑùµÄÀúÊ·¼ÇÂ¼
-             * Èç¹ûÃ»ÓĞÔòĞÂÔö£¬Èç¹ûÓĞÔò²»×öÖØ¸´´¢´æ£¬ÅĞ¶ÏÍê³Éºó½øÈëÏÂÒ»Ò³
+             * ç‚¹å‡»æœç´¢ç»“æœè¿›å…¥ä¸‹ä¸€é¡µé¢æ—¶è¿›è¡Œåˆ¤æ–­æ˜¯å¦å·²ç»æœ‰ä¸€æ ·çš„å†å²è®°å½•
+             * å¦‚æœæ²¡æœ‰åˆ™æ–°å¢ï¼Œå¦‚æœæœ‰åˆ™ä¸åšé‡å¤å‚¨å­˜ï¼Œåˆ¤æ–­å®Œæˆåè¿›å…¥ä¸‹ä¸€é¡µ
              */
             nextpage(index, geohash){
                 let history = getStore('placeHistory');
@@ -112,10 +112,10 @@
                     this.placeHistory.push(choosePlace)
                 }
                 setStore('placeHistory',this.placeHistory)
-                //µã»÷ËÑË÷ÀúÊ· ½øÈëÀúÊ·ËÑË÷Õâ¸ö³ÇÊĞ
+                //ç‚¹å‡»æœç´¢å†å² è¿›å…¥å†å²æœç´¢è¿™ä¸ªåŸå¸‚
                 this.$router.push({path:'/msite', query:{geohash}})
             },
-            //Çå³ıÀúÊ·
+            //æ¸…é™¤å†å²
             clearAll(){
                 removeStore('placeHistory');
                 this.initData();

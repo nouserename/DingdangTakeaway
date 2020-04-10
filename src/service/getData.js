@@ -1,29 +1,29 @@
-//ÒýÈë ·â×°ºÃµÄ ÇëÇó¹¤¾ß
+//å¼•å…¥ å°è£…å¥½çš„ è¯·æ±‚å·¥å…·
 import fetch from '../config/fetch'
 /**
- * »ñÈ¡Ê×Ò³Ä¬ÈÏµØÖ·
+ * èŽ·å–é¦–é¡µé»˜è®¤åœ°å€
  */
 export const cityGuess = () => fetch('/v1/cities', {
     type: 'guess'
 });
 /**
- * »ñÈ¡Ê×Ò³ÈÈÃÅ³ÇÊÐ
+ * èŽ·å–é¦–é¡µçƒ­é—¨åŸŽå¸‚
  */
 export const hotcity = () => fetch('/v1/cities', {
     type: 'hot'
 });
 /**
- * »ñÈ¡Ê×Ò³ËùÓÐ³ÇÊÐ
+ * èŽ·å–é¦–é¡µæ‰€æœ‰åŸŽå¸‚
  */
 export const groupcity = () => fetch('/v1/cities', {
     type: 'group'
 });
 /**
- * »ñÈ¡µ±Ç°ËùÔÚ³ÇÊÐ
+ * èŽ·å–å½“å‰æ‰€åœ¨åŸŽå¸‚
  */
 export const currentcity = number => fetch('/v1/cities/' + number);
 /**
- * »ñÈ¡ËÑË÷µØÖ·
+ * èŽ·å–æœç´¢åœ°å€
  */
 export const searchplace = (cityid, value) => fetch('/v1/pois', {
     type: 'search',
