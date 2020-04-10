@@ -1,31 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'  //@ 会根据配置自动 转换成src 文件夹
-import Home from '@/components/Home'
-import App from '../App' //引入 App.vue
+import App from '../App'
+Vue.use(Router)
 
-Vue.use(Router) //在vue中注册 vue-router
+const home = ()=>import('../page/home/home')
+const city = ()=>import('../page/city/city')
 
 export default new Router({
-  mode:'hash',//指定路由为 hash 模式
-  routes: [
-    {
-      path: '/',
-      component: App,
-      children:[ //二级路由
+  mode: 'hash',
+  routes: [{
+    path: '/',
+    component: App,
+    children:[
       {
-          path:'',//路由为根路由自动重定向到 /home
-          redirect:'/home'
+        path:'',//地址为空时，自动跳转到 /home
+        redirect:'/home'
       },
-        {
+      {
         path:'/home',
-        component:Home
+        component:home
       },
       {
-        path:'/helloworld',
-        component:HelloWorld
+        //home 页面 会将城市的 cityid 传给 city页，在路由中指明参数 cityid
+        path:'/city/:cityid',
+        component:city
       }
-      ]
-    }
-  ]
+    ]
+  }]
 })
