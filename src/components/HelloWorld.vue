@@ -2,6 +2,8 @@
   <div>
     <h1>hello world</h1>
     <p>{{msg}}</p>
+    <!-- router-link router内置组件可以实现路由跳转 to属性指定跳转到那个路由 -->
+    <router-link to="/home">Home</router-link>
   </div>
 </template>
 
@@ -16,9 +18,8 @@ export default {
 }
 </script>
 
-<!-- 指定语言 为 scss lang="scss" -->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-    /* 定义变量 */
   $font-color:red;
   h1{
     color:$font-color
