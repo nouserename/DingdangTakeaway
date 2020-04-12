@@ -5,6 +5,9 @@ Vue.use(Router)
 
 const home = ()=>import('../page/home/home')
 const city = ()=>import('../page/city/city')
+//引入新创建的 msite
+const msite = ()=>import('../page/msite/msite')
+
 
 export default new Router({
   mode: 'hash',
@@ -21,9 +24,14 @@ export default new Router({
         component:home
       },
       {
-        //home 页面 会将城市的 cityid 传给 city页，在路由中指明参数 cityid
+        //home 页面 会将城市的 id 传给 city页，在路由中指明参数 ：id
         path:'/city/:cityid',
         component:city
+      },
+        {
+        //home 页面 会将城市的 id 传给 city页，在路由中指明参数 ：id
+        path:'/msite',
+        component:msite
       }
     ]
   }]
