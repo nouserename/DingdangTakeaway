@@ -57,11 +57,11 @@
 
 <script>
 import { mapMutations } from "vuex";
-import headTop from "src/components/header/head";
-import footGuide from "src/components/footer/footGuide";
+import headTop from "../../components/header/head";
+import footGuide from "../../components/footer/footGuide";
 //引入商铺组件
-import shopList from "src/components/common/shoplist";
-import { msiteAddress, msiteFoodTypes, cityGuess } from "src/service/getData";
+import shopList from "../../components/common/shoplist";
+import { msiteAddress, msiteFoodTypes, cityGuess } from "../../service/getData";
 import Swiper from "swiper";
 import "./../../../node_modules/swiper/css/swiper.min.css";
 

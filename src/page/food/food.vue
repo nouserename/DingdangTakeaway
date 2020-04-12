@@ -10,9 +10,9 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import headTop from "src/components/header/head";
-import shopList from "src/components/common/shoplist";
-import { msiteAddress } from "src/service/getData";
+import headTop from "../../components/header/head";
+import shopList from "../../components/common/shoplist";
+import { msiteAddress } from "../../service/getData";
 
 
 export default {
