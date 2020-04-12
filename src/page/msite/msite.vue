@@ -54,7 +54,7 @@ import { msiteAddress, msiteFoodTypes, cityGuess } from "../../service/getData";
 //引入swiper
 import Swiper from "swiper";
 //引入swiper.css
-import "./../../../node_modules/swiper/dist/css/swiper.min.css";
+import "./../../../node_modules/swiper/css/swiper.min.css";
 
 export default {
   data() {
