@@ -5,8 +5,10 @@ Vue.use(Router)
 
 const home = ()=>import('../page/home/home')
 const city = ()=>import('../page/city/city')
-//引入新创建的 msite
 const msite = ()=>import('../page/msite/msite')
+//加入 food 
+const food = ()=>import('../page/food/food')
+
 
 
 export default new Router({
@@ -32,6 +34,10 @@ export default new Router({
         //home 页面 会将城市的 id 传给 city页，在路由中指明参数 ：id
         path:'/msite',
         component:msite
+      },
+      {
+        path:'/food',
+        component:food
       }
     ]
   }]

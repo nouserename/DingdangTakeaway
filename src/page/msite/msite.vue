@@ -1,6 +1,5 @@
 <template>
   <div>
-  <!-- head -->
     <head-top signin-up="msite">
       <router-link
         :to="{name:'search',params:{geohash}}"
@@ -16,7 +15,6 @@
         <span class="title_text ellipsis">{{msiteTitle}}</span>
       </router-link>
     </head-top>
-    <!-- 分类列表 -->
     <nav class="msite_nav">
       <div class="swiper-container" v-if="foodTypes.length">
         <div class="swiper-wrapper">
@@ -25,7 +23,6 @@
             v-for="(item, index) in foodTypes"
             :key="index"
           >
-          <!-- 点击任何一个分类跳转到 /food 页面 并且传入 经纬度信息 以及分类名称-->
             <router-link
               :to="{path: '/food', query: {geohash, title: foodItem.title, restaurant_category_id: getCategoryId(foodItem.link)}}"
               v-for="foodItem in item"
@@ -39,21 +36,33 @@
             </router-link>
           </div>
         </div>
-        <!-- 分页小圆点 -->
         <div class="swiper-pagination"></div>
       </div>
+      <img src="../../images/fl.svg" class="fl_back animation_opactiy" v-else>
     </nav>
+    <div class="shop_list_container">
+      <header class="shop_header">
+        <svg class="shop_icon">
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shop"></use>
+        </svg>
+        <span class="shop_header_title">附近商家</span>
+      </header>
+      <!-- 商铺列表组件 并将用户经纬度通过 props 传给组件 -->
+      <shop-list v-if="hasGetData" :geohash="geohash"></shop-list>
+    </div>
+    <!-- 底部 tab -->
+    <foot-guide></foot-guide>
   </div>
 </template>
 
 <script>
-//使用 vue mapMutations 他会自动映射成 this.$store.commit('xxx')
 import { mapMutations } from "vuex";
-import headTop from "../../components/header/head";
-import { msiteAddress, msiteFoodTypes, cityGuess } from "../../service/getData";
-//引入swiper
+import headTop from "src/components/header/head";
+import footGuide from "src/components/footer/footGuide";
+//引入商铺组件
+import shopList from "src/components/common/shoplist";
+import { msiteAddress, msiteFoodTypes, cityGuess } from "src/service/getData";
 import Swiper from "swiper";
-//引入swiper.css
 import "./../../../node_modules/swiper/css/swiper.min.css";
 
 export default {
@@ -61,13 +70,12 @@ export default {
     return {
       geohash: "", // city页面传递过来的地址geohash
       msiteTitle: "请选择地址...", // msite页面头部标题
+      foodTypes: [], // 食品分类列表
       hasGetData: false, //是否已经获取地理位置数据，成功之后再获取商铺列表信息
-      imgBaseUrl: "https://fuss10.elemecdn.com" //图片域名地址 饿了么提供的图片
+      imgBaseUrl: "https://fuss10.elemecdn.com" //图片域名地址
     };
   },
-  // 函数前面的async关键字，表明该函数内部有异步操作。调用该函数时，会立即返回一个Promise对象。一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。 
   async beforeMount() {
-    //获取路由传递的query类参数
     if (!this.$route.query.geohash) {
       const address = await cityGuess();
       this.geohash = address.latitude + "," + address.longitude;
@@ -79,7 +87,7 @@ export default {
     //获取位置信息
     let res = await msiteAddress(this.geohash);
     this.msiteTitle = res.name;
-    // vuex 记录当前经度纬度
+    // 记录当前经度纬度
     this.RECORD_ADDRESS(res);
 
     this.hasGetData = true;
@@ -100,20 +108,19 @@ export default {
         //初始化swiper
         new Swiper(".swiper-container", {
           pagination: {
-              //分页原点 挂载点
             el: ".swiper-pagination"
           },
-            //无缝滚动
           loop: true
         });
       });
   },
   components: {
     headTop,
+    shopList,
     footGuide
   },
+  computed: {},
   methods: {
-    //...扩展符 mapMutations 会自动映射Mutations
     ...mapMutations(["RECORD_ADDRESS", "SAVE_GEOHASH"]),
     // 解码url地址，求去restaurant_category_id值
     getCategoryId(url) {
@@ -183,6 +190,23 @@ export default {
         text-align: center;
         @include sc(0.55rem, #666);
       }
+    }
+  }
+}
+.shop_list_container {
+  margin-top: 0.4rem;
+  border-top: 0.025rem solid $bc;
+  background-color: #fff;
+  .shop_header {
+    .shop_icon {
+      fill: #999;
+      margin-left: 0.6rem;
+      vertical-align: middle;
+      @include wh(0.6rem, 0.6rem);
+    }
+    .shop_header_title {
+      color: #999;
+      @include font(0.55rem, 1.6rem);
     }
   }
 }
