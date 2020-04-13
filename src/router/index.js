@@ -12,12 +12,14 @@ const forget = () => import('../page/forget/forget')
 const shop = () => import('../page/shop/shop')
 const shopDetail = () => import('../page/shop/children/shopDetail')
 const confirmOrder = () => import('../page/confirmOrder/confirmOrder')
+const payment = () => import('../page/confirmOrder/children/payment')
 const remark = () => import('../page/confirmOrder/children/remark')
-const invoice = () => import('../page/confirmOrder/children/invoice')
 const chooseAddress = () => import('../page/confirmOrder/children/chooseAddress')
 const addAddress = () => import('../page/confirmOrder/children/children/addAddress')
 const searchAddress = () => import('../page/confirmOrder/children/children/children/searchAddress')
-const payment = () => import('../page/confirmOrder/children/payment')
+const search = () => import('../page/search/search')
+
+
 
 
 export default new Router({
@@ -75,10 +77,6 @@ export default new Router({
               path: 'payment', //付款页面
               component: payment,
           }, 
-          {
-              path: 'invoice', //发票页面
-              component: invoice,
-          }, 
            {
               path: 'chooseAddress', //选择地址
               component: chooseAddress,
@@ -92,6 +90,12 @@ export default new Router({
               }, ]
           }, ]
       },
+      //搜索页 传递 params 路由参数
+      {
+        path:'search/:geohash',
+        component:search,
+        name:'search'
+      }
     ]
   }]
 })

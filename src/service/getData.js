@@ -165,3 +165,57 @@ export const placeOrders = (user_id, cart_id, address_id, description, entities,
 */
 
 export const getAddressList = (user_id) => fetch('/v1/users/'+user_id+'/addresses')
+
+export const searchNearby = keyword => fetch('/v1/pois', {
+    type: 'nearby',
+    keyword
+});
+
+/**
+ * 添加地址
+ */
+
+export const postAddAddress = (userId, address, address_detail, geohash, name, phone, phone_bk, poi_type, sex, tag, tag_type) => fetch('/v1/users/' + userId + '/addresses', {
+    address,
+    address_detail,
+    geohash,
+    name,
+    phone,
+    phone_bk,
+    poi_type,
+    sex,
+    tag,
+    tag_type,
+}, 'POST');
+
+/**
+ * 重新发送订单验证码
+ */
+
+export const payRequest = (merchantOrderNo, userId) => fetch('/payapi/payment/queryOrder', {
+    merchantId: 5,
+    merchantOrderNo,
+    source: 'MOBILE_WAP',
+    userId,
+    version: '1.0.0',
+});
+
+/**
+ * 获取快速备注列表
+ */
+
+export const getRemark = (id, sig) => fetch('/v1/carts/' + id + '/remarks', {
+    sig
+});
+
+
+/**
+ * 获取search页面搜索结果
+ */
+
+export const searchRestaurant = (geohash, keyword) => fetch('/v4/restaurants', {
+    'extras[]': 'restaurant_activity',
+    geohash,
+    keyword,
+    type: 'search'
+});
