@@ -219,3 +219,22 @@ export const searchRestaurant = (geohash, keyword) => fetch('/v4/restaurants', {
     keyword,
     type: 'search'
 });
+
+/**
+ * 获取订单列表
+ * 
+ * time:Math.random() time属于无意义随机参数，解决·浏览器缓存问题，导致数据不更新
+ */
+
+export const getOrderList = (user_id, offset) => fetch('/bos/v2/users/' + user_id + '/orders', {
+    limit: 10,
+    offset,
+    time:Math.random()
+});
+
+
+/**
+ * 获取订单详情
+ */
+
+export const getOrderDetail = (user_id, orderid) => fetch('/bos/v1/users/' + user_id + '/orders/' + orderid + '/snapshot');

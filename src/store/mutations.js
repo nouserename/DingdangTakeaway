@@ -17,7 +17,8 @@ import {
     CHOOSE_SEARCH_ADDRESS,
     CHANGE_ORDER_PARAM,
     CONFIRM_REMARK,
-    CONFIRM_INVOICE
+    CONFIRM_ADDRESS,
+    SAVE_ORDER
   } from './mutation-types.js'
   //引入local
   import {
@@ -181,10 +182,10 @@ import {
       state.cartPrice = null;
       state.orderMessage = order;
     },
-        //是否开发票
-      [CONFIRM_INVOICE](state, invoice) {
-          state.invoice = invoice;
-      },
+    //     //是否开发票
+      // [CONFIRM_INVOICE](state, invoice) {
+      //     state.invoice = invoice;
+      // },
         //选择搜索的地址
       [CHOOSE_SEARCH_ADDRESS](state, place) {
           state.searchAddress = place;
@@ -196,7 +197,14 @@ import {
       }) {
           state.remarkText = remarkText;
           state.inputText = inputText;
+    },
+        //确认订单页添加新的的地址
+      [CONFIRM_ADDRESS](state, newAddress) {
+          state.newAddress.push(newAddress);
+    },
+        //进入订单详情页前保存该订单信息
+      [SAVE_ORDER](state, orderDetail) {
+          state.orderDetail = orderDetail;
       },
   }
   export default mutations
-  // 'INIT_BUYCART', 'SAVE_GEOHASH', 'CHOOSE_ADDRESS', 'NEED_VALIDATION', 'SAVE_CART_ID_SIG', 'SAVE_ORDER_PARAM', 'ORDER_SUCCESS', 'SAVE_SHOPID'

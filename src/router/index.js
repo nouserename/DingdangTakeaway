@@ -18,7 +18,8 @@ const chooseAddress = () => import('../page/confirmOrder/children/chooseAddress'
 const addAddress = () => import('../page/confirmOrder/children/children/addAddress')
 const searchAddress = () => import('../page/confirmOrder/children/children/children/searchAddress')
 const search = () => import('../page/search/search')
-
+const order = () => import('../page/order/order')
+const orderDetail = () => import('../page/order/children/orderDetail')
 
 
 
@@ -90,11 +91,20 @@ export default new Router({
               }, ]
           }, ]
       },
-      //搜索页 传递 params 路由参数
+      //搜索页
       {
         path:'search/:geohash',
         component:search,
         name:'search'
+      },
+      //订单列表页
+      {
+        path:'/order',
+        component:order,
+        children: [{
+          path: 'orderDetail',
+          component: orderDetail
+        }]
       }
     ]
   }]
