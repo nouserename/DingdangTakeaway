@@ -46,7 +46,7 @@ export const searchplace = (cityid, value) => fetch('/v1/pois', {
 
 
 /**
- * 获取msite页面地址信息,头部根据经纬度查询地理位置
+ * 获取msite页面地址信息
  */
 
 export const msiteAddress = geohash => fetch('/v2/pois/' + geohash);
@@ -82,6 +82,28 @@ export const shopList = (latitude, longitude, offset, restaurant_category_id = '
         'extras[]': 'activities',
         keyword: '',
         restaurant_category_id,
+        'restaurant_category_ids[]': restaurant_category_ids,
+        order_by,
+        'delivery_mode[]': delivery_mode + supportStr
     };
     return fetch('/shopping/restaurants', data);
 };
+
+//获取后台验证码
+export const getcaptchas = () => fetch('/v1/captchas', {},'POST');
+
+/**
+ * 账号密码登录
+ */
+export const accountLogin = (username, password, captcha_code) => fetch('/v2/login', {username, password, captcha_code}, 'POST');
+
+/**
+ * 获取用户信息
+ */
+
+export const getUser = () => fetch('/v1/user', {user_id: getStore('user_id')});
+
+/**
+ * 改密码
+ */
+export const changePassword = (username, oldpassWord, newpassword, confirmpassword, captcha_code) => fetch('/v2/changepassword', {username, oldpassWord, newpassword, confirmpassword, captcha_code}, 'POST');

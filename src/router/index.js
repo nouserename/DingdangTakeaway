@@ -6,8 +6,10 @@ Vue.use(Router)
 const home = ()=>import('../page/home/home')
 const city = ()=>import('../page/city/city')
 const msite = ()=>import('../page/msite/msite')
-//加入 food 
 const food = ()=>import('../page/food/food')
+const login = ()=>import('../page/login/login')
+//引入 忘记密码页
+const forget = ()=>import('../page/forget/forget')
 
 
 
@@ -38,6 +40,14 @@ export default new Router({
       {
         path:'/food',
         component:food
+      },
+      {
+        path:'/login',
+        component:login
+      },
+        {
+        path:'/forget',
+        component:forget
       }
     ]
   }]

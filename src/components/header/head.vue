@@ -7,8 +7,12 @@
                 <polyline points="12,18 4,9 12,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
             </svg>
         </section>
-        <router-link to="/login" v-if='signinUp' class="head_login">
-            <span class="login_span">登录|注册</span>
+        <!-- 如果 用户信息存在就展现 人形小图标，并且点击进入个人主页 ，如果没有信息，说明未登录，展现 登录|注册 ，点击进入登录注册页面-->
+        <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
+            <svg class="user_avatar" v-if="userInfo">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+            </svg>
+            <span class="login_span" v-else>登录|注册</span>
         </router-link>
         <section class="title_head ellipsis" v-if="headTitle">
             <span class="title_text">{{headTitle}}</span>
@@ -21,14 +25,32 @@
 </template>
 
 <script>
+    import {mapState, mapActions} from 'vuex'
     export default {
         data(){
             return{
 
             }
         },
-        //接受父组件传来的 props 来确认头部展示那些信息
+        mounted(){
+            //挂载后获取用户信息 实际触发的是 映射的 getUserInfo action
+            this.getUserInfo();
+
+        },
         props: ['signinUp', 'headTitle', 'goBack'],
+        computed: {
+            //使用 mapState 取到vuex中用户信息 ，并映射成组件计算属性 组件使用 this.userInfo 就可以获取到
+            ...mapState([
+                'userInfo'
+            ]),
+        },
+        methods: {
+            // 触发 action getUserInfo 它根据localstorage 存储的用户 id ，重新获取用户信息，并 commit 重新让 vuex 管理用户信息
+            ...mapActions([
+                'getUserInfo'
+            ]),
+        },
+
     }
 
 </script>
