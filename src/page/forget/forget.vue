@@ -31,9 +31,9 @@
 </template>
 
 <script>
-    import headTop from 'src/components/header/head'
-    import alertTip from 'src/components/common/alertTip'
-    import {getcaptchas, changePassword} from 'src/service/getData'
+    import headTop from '../../components/header/head'
+    import alertTip from '../../components/common/alertTip'
+    import {getcaptchas, changePassword} from '../../service/getData'
 
     export default {
         data(){
