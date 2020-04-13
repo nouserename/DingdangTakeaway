@@ -123,3 +123,45 @@ export const shopDetails = (shopid, latitude, longitude) => fetch('/shopping/res
 export const foodMenu = restaurant_id => fetch('/shopping/v2/menu', {
     restaurant_id
 });
+
+/**
+ * 确认订单
+ */
+
+export const checkout = (geohash, entities, shopid) => fetch('/v1/carts/checkout', {
+    come_from: "web",
+    geohash,
+    entities,
+    restaurant_id: shopid,
+}, 'POST');
+
+/**
+ * 获取地址列表
+ */
+
+export const getAddress = (id, sig) => fetch('/v1/carts/' + id + '/addresses', {
+    sig
+});
+
+
+/**
+ * 下订单
+ */
+
+export const placeOrders = (user_id, cart_id, address_id, description, entities, geohash, sig) => fetch('/v1/users/' + user_id + '/carts/' + cart_id + '/orders', {
+    address_id,
+    come_from: "mobile_web",
+    deliver_time: "",
+    description,
+    entities,
+    geohash,
+    paymethod_id: 1,
+    sig,
+}, 'POST');
+
+
+/**
+*个人中心里编辑地址
+*/
+
+export const getAddressList = (user_id) => fetch('/v1/users/'+user_id+'/addresses')
