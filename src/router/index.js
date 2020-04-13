@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from '../App'
@@ -8,8 +9,9 @@ const city = ()=>import('../page/city/city')
 const msite = ()=>import('../page/msite/msite')
 const food = ()=>import('../page/food/food')
 const login = ()=>import('../page/login/login')
-//引入 忘记密码页
 const forget = ()=>import('../page/forget/forget')
+const shop = ()=>import('../page/shop/shop')
+const shopDetail = () =>import('../page/shop/children/shopDetail')
 
 
 
@@ -48,6 +50,14 @@ export default new Router({
         {
         path:'/forget',
         component:forget
+      },
+        {
+        path:'/shop',
+        component:shop,
+        children:[{
+          path:'shopDetail',
+          component:shopDetail
+        }]
       }
     ]
   }]

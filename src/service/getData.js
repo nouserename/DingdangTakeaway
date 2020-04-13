@@ -1,6 +1,6 @@
 //引入 封装好的 请求工具
 import fetch from '../config/fetch'
-
+import {getStore} from '../config/mUtils'
 /**
  * 获取首页默认地址
  */
@@ -82,12 +82,11 @@ export const shopList = (latitude, longitude, offset, restaurant_category_id = '
         'extras[]': 'activities',
         keyword: '',
         restaurant_category_id,
-        'restaurant_category_ids[]': restaurant_category_ids,
-        order_by,
-        'delivery_mode[]': delivery_mode + supportStr
+
     };
     return fetch('/shopping/restaurants', data);
 };
+
 
 //获取后台验证码
 export const getcaptchas = () => fetch('/v1/captchas', {},'POST');
@@ -107,3 +106,20 @@ export const getUser = () => fetch('/v1/user', {user_id: getStore('user_id')});
  * 改密码
  */
 export const changePassword = (username, oldpassWord, newpassword, confirmpassword, captcha_code) => fetch('/v2/changepassword', {username, oldpassWord, newpassword, confirmpassword, captcha_code}, 'POST');
+
+/**
+ * 获取shop页面商铺详情
+ */
+
+export const shopDetails = (shopid, latitude, longitude) => fetch('/shopping/restaurant/' + shopid, {
+    latitude,
+    longitude: longitude + '&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics'
+});
+
+/**
+ * 获取shop页面菜单列表
+ */
+
+export const foodMenu = restaurant_id => fetch('/shopping/v2/menu', {
+    restaurant_id
+});
