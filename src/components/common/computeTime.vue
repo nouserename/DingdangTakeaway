@@ -76,7 +76,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../../style/mixin';
+    @import '../../style/mixin';
     .page{
         display: inline-block;
         .rem_time{
