@@ -20,6 +20,12 @@ const searchAddress = () => import('../page/confirmOrder/children/children/child
 const search = () => import('../page/search/search')
 const order = () => import('../page/order/order')
 const orderDetail = () => import('../page/order/children/orderDetail')
+const profile = ()=> import('../page/profile/profile')
+const info = ()=> import('../page/profile/children/info')
+const address = ()=> import('../page/profile/children/children/address')
+const setusername = ()=> import('../page/profile/children/children/setusername')
+const add = ()=> import('../page/profile/children/children/children/add')
+const addDetail = ()=> import('../page/profile/children/children/children/children/addDetail')
 
 
 
@@ -105,7 +111,32 @@ export default new Router({
           path: 'orderDetail',
           component: orderDetail
         }]
-      }
+      },
+        //个人信息页
+        {
+          path: '/profile',
+          component: profile,
+          children: [{
+              path: 'info', //个人信息详情页
+              component: info,
+              children: [{
+                  path: 'setusername',
+                  component: setusername,
+              },{
+                  path: 'address',
+                  component: address,     //编辑地址
+                  children:[{
+                      path:'add',
+                      component:add,
+                      children:[{
+                          path:'addDetail',
+                          component:addDetail
+                      }]
+                  }]
+              }]
+          },
+]
+      },
     ]
   }]
 })

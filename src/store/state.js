@@ -19,6 +19,11 @@ const state = {
   remarkText: null,//可选备注内容
   inputText: '',//输入备注内容
   orderDetail: null, //订单详情
+  imgPath:null,//头像地址
+  addAddress:'',        //新增地址
+  removeAddress:[],//移除地址
+  newAddress: [], //新的地址
+
 }
 
 export default state

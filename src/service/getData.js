@@ -98,9 +98,11 @@ export const accountLogin = (username, password, captcha_code) => fetch('/v2/log
 
 /**
  * 获取用户信息
+ * 
+ * time 无意义参数 防止浏览器缓存
  */
 
-export const getUser = () => fetch('/v1/user', {user_id: getStore('user_id')});
+export const getUser = () => fetch('/v1/user', {user_id: getStore('user_id'),time:Math.random()});
 
 /**
  * 改密码
@@ -164,7 +166,7 @@ export const placeOrders = (user_id, cart_id, address_id, description, entities,
 *个人中心里编辑地址
 */
 
-export const getAddressList = (user_id) => fetch('/v1/users/'+user_id+'/addresses')
+export const getAddressList = (user_id) => fetch('/v1/users/'+user_id+'/addresses',{time:Math.random()})
 
 export const searchNearby = keyword => fetch('/v1/pois', {
     type: 'nearby',
@@ -174,7 +176,6 @@ export const searchNearby = keyword => fetch('/v1/pois', {
 /**
  * 添加地址
  */
-
 export const postAddAddress = (userId, address, address_detail, geohash, name, phone, phone_bk, poi_type, sex, tag, tag_type) => fetch('/v1/users/' + userId + '/addresses', {
     address,
     address_detail,
@@ -187,11 +188,9 @@ export const postAddAddress = (userId, address, address_detail, geohash, name, p
     tag,
     tag_type,
 }, 'POST');
-
 /**
  * 重新发送订单验证码
  */
-
 export const payRequest = (merchantOrderNo, userId) => fetch('/payapi/payment/queryOrder', {
     merchantId: 5,
     merchantOrderNo,
@@ -199,42 +198,39 @@ export const payRequest = (merchantOrderNo, userId) => fetch('/payapi/payment/qu
     userId,
     version: '1.0.0',
 });
-
 /**
  * 获取快速备注列表
  */
-
 export const getRemark = (id, sig) => fetch('/v1/carts/' + id + '/remarks', {
     sig
 });
-
-
 /**
  * 获取search页面搜索结果
  */
-
 export const searchRestaurant = (geohash, keyword) => fetch('/v4/restaurants', {
     'extras[]': 'restaurant_activity',
     geohash,
     keyword,
     type: 'search'
 });
-
 /**
  * 获取订单列表
- * 
  * time:Math.random() time属于无意义随机参数，解决·浏览器缓存问题，导致数据不更新
  */
-
 export const getOrderList = (user_id, offset) => fetch('/bos/v2/users/' + user_id + '/orders', {
     limit: 10,
     offset,
     time:Math.random()
 });
-
-
 /**
  * 获取订单详情
  */
-
 export const getOrderDetail = (user_id, orderid) => fetch('/bos/v1/users/' + user_id + '/orders/' + orderid + '/snapshot');
+/**
+* 删除地址
+*/
+export const deleteAddress = (userid, addressid) => fetch( '/v1/users/' + userid + '/addresses/' + addressid, {}, 'DELETE')
+/**
+ * 退出登录
+ */
+export const signout = () => fetch('/v2/signout');
