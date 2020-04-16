@@ -1,10 +1,10 @@
 
 /**
- * ÅäÖÃ±àÒë»·¾³ºÍÏßÉÏ»·¾³Ö®¼äµÄÇÐ»»
+ * ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ë»·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
  * 
- * baseUrl: ÓòÃûµØÖ·
- * routerMode: Â·ÓÉÄ£Ê½
- * imgBaseUrl: Í¼Æ¬ËùÔÚÓòÃûµØÖ·
+ * baseUrl: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+ * routerMode: Â·ï¿½ï¿½Ä£Ê½
+ * imgBaseUrl: Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
  * 
  */
 let baseUrl = ''; 
@@ -12,15 +12,15 @@ let routerMode = 'hash';
 let imgBaseUrl = '';
 
 
-if (process.env.NODE_ENV == 'development') { //Èç¹ûÊÇ¿ª·¢»·¾³ Í¼Æ¬Â·¾¶¾ÍÊÇ img ÎÄ¼þ¼Ð
+if (process.env.NODE_ENV == 'development') { //ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Í¼Æ¬Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ img ï¿½Ä¼ï¿½ï¿½ï¿½
     imgBaseUrl = '/img/';
 
-}else if(process.env.NODE_ENV == 'production'){//Éú²ú»·¾³ÏÂÍ¼Æ¬×ÊÔ´Â·¾¶Óë»ù±¾Â·¾¶ÅäÖÃ
-    baseUrl = '//localhost:8888'
-    imgBaseUrl = '//localhost:8888/img/';
+}else if(process.env.NODE_ENV == 'production'){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    baseUrl = '//39.106.104.0:8888'
+    imgBaseUrl = '//39.106.104.0:8888/img/';
 }
 
-export { //µ¼³ö url
+export { //ï¿½ï¿½ï¿½ï¿½ url
     baseUrl,
     routerMode,
     imgBaseUrl,
