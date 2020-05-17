@@ -3,7 +3,7 @@
           <!-- head -->
         <head-top signin-up='home'>
             <!-- 用 slot='logo' 分发一个本页面特定的 头部项 logo  点击 logo 重载页面-->
-            <span slot='logo' class="head_logo"  @click="reload">ele.me</span>
+            <span slot='logo' class="head_logo"  @click="reload">叮当</span>
         </head-top>
           <!-- head -->
           <!-- city-list -->
