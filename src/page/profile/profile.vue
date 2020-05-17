@@ -86,7 +86,7 @@
                         </svg>
                     </aside>
                     <div class="myorder-div">
-                        <span>饿了么会员卡</span>
+                        <span>叮当会员卡</span>
                         <span class="myorder-divsvg">
                             <svg fill="#bbb">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
@@ -120,7 +120,7 @@
                         </svg>
                     </aside>
                     <div class="myorder-div" style="border-bottom:0;">
-                        <span>下载饿了么APP</span>
+                        <span>下载叮当APP</span>
                         <span class="myorder-divsvg">
                             <svg fill="#bbb">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
