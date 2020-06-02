@@ -6,7 +6,7 @@ import App from './App';
 import store from './store';
 //引入rem移动端适配方案
 import './config/rem'
-VutionTip e.config.produc= false
+Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
