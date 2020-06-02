@@ -1,3 +1,4 @@
+// 数据请求整合在一个js文件中，方便整个项目不同模块都可以随时调用
 //引入 封装好的 请求工具
 import fetch from '../config/fetch'
 import {getStore} from '../config/mUtils'

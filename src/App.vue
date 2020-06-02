@@ -1,9 +1,10 @@
+<!-- srcç›®å½•ä¸‹çš„æ ¹è·¯ç”±App.vue -->
 <template>
     <div>
         <transition name="router-fade" mode="out-in">
                 <router-view ></router-view>
         </transition>
-        <!-- HTML¶Ô´óĞ¡Ğ´²»Ãô¸Ğ£¬ËùÒÔÍÕ·åÃüÃûµÄ×é¼şÃû×Ö£¬Òª¸ÄÎª¶Ì»®ÏßÃüÃû -->
+        <!-- HTMLå¯¹å¤§å°å†™ä¸æ•æ„Ÿï¼Œæ‰€ä»¥é©¼å³°å‘½åçš„ç»„ä»¶åå­—ï¼Œè¦æ”¹ä¸ºçŸ­åˆ’çº¿å‘½å -->
         <svg-icon></svg-icon>    
     </div>
 </template>
@@ -11,7 +12,7 @@
 <script>
     import svgIcon from './components/common/svgIcon';
       export default {
-          //±ØĞë×¢²á²ÅÄÜÊ¹ÓÃ
+        // å¿…é¡»æ³¨å†Œæ‰èƒ½ä½¿ç”¨
         components:{
             svgIcon
         },
@@ -20,7 +21,9 @@
 </script>
 
 <style lang="scss">
+    // ä½¿ç”¨@importå°†å‰é¢å†™çš„å…¬å…±æ ·å¼å¼•å…¥ï¼Œæ¸…æ¥šé»˜è®¤æ ·å¼
       @import './style/common';
+    // è·¯ç”±åˆ‡æ¢è¿‡åº¦æ•ˆæœ é€æ˜è¿‡åº¦
     .router-fade-enter-active, .router-fade-leave-active {
           transition: opacity .3s;
     }

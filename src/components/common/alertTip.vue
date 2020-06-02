@@ -6,7 +6,7 @@
                 <span></span>
             </div>
             <p class="tip_text">{{alertText}}</p>
-            <div class="confrim" @click="closeTip">确认</div>
+            <div class="confrim" @click="closeTip">纭</div>
         </section>
     </div>
 </template>
@@ -22,10 +22,10 @@
         mounted(){
 
         },
-        props: ['alertText'], //调用组件时 传入 的提示内容 props
+        props: ['alertText'], //璋冪敤缁勪欢鏃朵紶鍏ョ殑鎻愮ず鍐呭 props
         methods: {
             closeTip(){
-                this.$emit('closeTip') //子父通信，父级组件操作 点击 确认后处理具体逻辑
+                this.$emit('closeTip') //瀛愮埗閫氫俊锛岀埗缁勪欢鎿嶄綔 鐐瑰嚮 纭鍚庡鐞嗗叿浣撻�昏緫
             }
         }
     }

@@ -43,7 +43,7 @@
                 </header>
                 <section class="hongbo">
                     <span>红包</span>
-                    <span>暂时只在饿了么 APP 中支持</span>
+                    <span>暂时只在叮当 APP 中支持</span>
                 </section>
             </section>
             <section class="food_list">

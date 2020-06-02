@@ -1,3 +1,4 @@
+<!-- 项目中回用到很多 svg，我们将它集中到一个组件中，其它组件要用直接使用 svg 的 use 标签就可以用到，不用到这些 svg 图标怎么画的，都是由 elm 官网提供的 -->
 <template>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0;visibility:hidden">
         <defs>
@@ -37,7 +38,7 @@
               <line x1="16" y1="10" x2="16" y2="21" style="stroke:#999;stroke-width:0.8"/>
               <line x1="10" y1="10" x2="22" y2="10" style="stroke:#999;stroke-width:0.8"/>
               <path d="M9.5 18 L16 10 L22.5 18" style="stroke:#999;stroke-width:0.8;fill:none"/>
-              <text x="10" y="27"  style="font-size:6px;fill:#999;font-weight:700;">����</text>
+              <text x="10" y="27"  style="font-size:6px;fill:#999;font-weight:700;">顶部</text>
             </g>
             </symbol>
             <symbol viewBox="0 0 33 32" id="default">

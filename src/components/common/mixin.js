@@ -2,7 +2,7 @@ import { getStyle } from '../../config/mUtils'
 import { imgBaseUrl, localapi, proapi } from '../../config/env'
 
 export const loadMore = {
-    //×Ô¶¨Òå×é¼şÖ¸Áî load-more
+    //è‡ªå®šä¹‰ç»„ä»¶æŒ‡ä»¤ load-more
     directives: {
         'load-more': {
             bind: (el, binding) => {
@@ -58,7 +58,7 @@ export const loadMore = {
                 }
 
                 const loadMore = () => {
-                    //¹ö¶¯µ½´ïµ×²¿£¬À­È¡Êı¾İ
+                    //æ»šåŠ¨åˆ°è¾¾åº•éƒ¨ï¼Œæ‹‰å»æ•°æ®
                     if (scrollEl.scrollTop + windowHeight >= height + setTop + paddingBottom + marginBottom - scrollReduce) {
                         binding.value();
                     }
@@ -70,11 +70,11 @@ export const loadMore = {
 // g
 export const getImgPath = {
     methods: {
-        //´«µİ¹ıÀ´µÄÍ¼Æ¬µØÖ·ĞèÒª´¦Àíºó²ÅÄÜÕı³£Ê¹ÓÃ
+        //ä¼ é€’è¿‡æ¥çš„å›¾ç‰‡åœ°å€éœ€è¦å¤„ç†åæ‰èƒ½æ­£å¸¸ä½¿ç”¨
         getImgPath(path) {
             let suffix;
             if (!path) {
-                //Èç¹ûÃ»ÓĞ´«µØÖ·£¬¾Í·µ»ØÄ¬ÈÏÍ¼Æ¬
+                //å¦‚æœæ²¡æœ‰ä¼ åœ°å€ï¼Œå°±è¿”å›é»˜è®¤å›¾ç‰‡
                 return 'http://labfile.oss.aliyuncs.com/courses/1293/default.jpg'
             }
             if (path.indexOf('jpeg') !== -1) {
@@ -82,7 +82,7 @@ export const getImgPath = {
             } else {
                 suffix = '.png'
             }
-            //ÓĞĞ©Í¼Æ¬ÊÇÊ¹ÓÃ ¶öÁËÃ´¹Ù·½¸ø¿ª·¢ÕßµÄÊ¾ÀıÍ¼Æ¬£¬ËùÒÔ£¬ÒªÆ´½ÓÒ»ÏÂÍ¼Æ¬µØÖ·
+            //æœ‰äº›å›¾ç‰‡æ˜¯ä½¿ç”¨ é¥¿äº†ä¹ˆå®˜æ–¹ç»™å¼€å‘è€…çš„ç¤ºä¾‹å›¾ç‰‡ï¼Œæ‰€ä»¥ï¼Œè¦æ‹¼æ¥ä¸€ä¸‹å›¾ç‰‡åœ°å€
             let url = '/' + path.substr(0, 1) + '/' + path.substr(1, 2) + '/' + path.substr(3) + suffix;
             return 'https://fuss10.elemecdn.com' + url
         }

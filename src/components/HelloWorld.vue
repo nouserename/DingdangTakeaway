@@ -2,7 +2,7 @@
   <div>
     <h1>hello world</h1>
     <p>{{msg}}</p>
-    <!-- router-link router内置组件可以实现路由跳转 to属性指定跳转到那个路由 -->
+    <!-- router-link router鍐呯疆缁勪欢鍙互瀹炵幇璺敱璺宠浆 to灞炴�ф寚瀹氳烦杞埌閭ｄ釜璺敱 -->
     <router-link to="/home">Home</router-link>
   </div>
 </template>

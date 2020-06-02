@@ -1,12 +1,13 @@
+//é€‚é…å­—ä½“å¤§å°ï¼Œé‡‡ç”¨remé€‚é…æ–¹æ¡ˆï¼Œæ ¹æ®æ ¹æ ‡ç­¾çš„å­—ä½“å¤§å°ï¼Œæ¥ä½œä¸ºcsså•ä½ï¼ˆå¦‚æœæ ¹æ ‡ç­¾å­—ä½“ä¸º14pxï¼Œé‚£ä¹ˆ1rem = 14pxï¼‰
 (function(doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = function() {
-            var clientWidth = docEl.clientWidth;//»ñÈ¡ÊÓ¿Ú¿í¶È
+            var clientWidth = docEl.clientWidth;//è·å–è§†å£å®½åº¦
             if (!clientWidth) return;
-            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px'; //ÉèÖÃ¸ù±êÇ© ×ÖÌå´óĞ¡
+            docEl.style.fontSize = 20 * (clientWidth / 320) + 'px'; //è®¾ç½®æ ¹æ ‡ç­¾å­—ä½“å¤§å°
         };
     if (!doc.addEventListener) return;
-    win.addEventListener(resizeEvt, recalc, false); //µ±Ëõ·ÅÊ±¸üĞÂ ¸ù±êÇ©×ÖÌå´óĞ¡
-    doc.addEventListener('DOMContentLoaded', recalc, false); //µ±ÎÄµµ±»ÍêÈ«½âÎö¼ÓÔØºó Ö´ĞĞ recalc,ÉèÖÃ×ÖÌå
+    win.addEventListener(resizeEvt, recalc, false); //å½“ç¼©æ”¾æ—¶æ›´æ–°æ ¹æ ‡ç­¾å­—ä½“å¤§å°
+    doc.addEventListener('DOMContentLoaded', recalc, false); //å½“æ–‡æ¡£è¢«å®Œå…¨è§£æåŠ è½½åæ‰§è¡Œrecalcï¼Œè®¾ç½®å­—ä½“
 })(document, window);

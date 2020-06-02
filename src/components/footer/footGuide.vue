@@ -1,6 +1,6 @@
 <template>
     <section id='foot_guide'>
-      <!-- ʹ�� svg ʸ��ͼ�� ֱ��ʹ�þͺ�   -->
+      <!-- 使用 svg 矢量图标 直接使用就好 -->
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
             <defs>
                 <symbol viewBox="0 0 40 40" id="msite"><g fill="none" fill-rule="evenodd" stroke="#666" stroke-width="2"><path d="M31.426 23.095l2.678 5.742 2.943-1.372a3.173 3.173 0 0 0 1.537-4.212l-1.339-2.871-5.819 2.713z"></path><path d="M29.074 31.161c-1.224-.49-2.404-.32-3.49.185-6.383 2.977-13.938.286-16.875-6.01-2.936-6.297-.14-13.815 6.243-16.792 5.211-2.43 11.203-1.083 14.825 2.919l-12.263 5.718c-1.596.745-2.295 2.624-1.561 4.198.734 1.574 2.625 2.246 4.22 1.503l8.422-3.928 9.953-4.641a18.78 18.78 0 0 0-.941-2.453C33.202 2.416 21.869-1.62 12.294 2.844 2.718 7.309-1.474 18.586 2.93 28.03c4.404 9.445 15.737 13.482 25.313 9.017 1.069-.499 2.067-.879 3.438-1.744 0 0-1.382-3.651-2.607-4.142z"></path></g></symbol>
@@ -22,11 +22,11 @@
             </defs>
       </svg>
 
-      <!-- gotoAddress���巽�����ú���ʽ����ʵ��·���л� -->
+      <!-- gotoAddress定义方法，用函数式导航实现路由转换 -->
         <section @click = "gotoAddress({path: '/msite', query: {geohash}})" class="guide_item">
-        <!-- ʹ�����涨��� svg ͼ�� ���жϵ�ǰ·��Ϊ $route.path.indexOf() ʲô �����ĸ�ѡ�����-->
+        <!-- 使用上面定义的 svg 图标，判断当前路由为 $route.path.indexOf() 什么 决定哪个选项高亮 -->
             <svg class="icon_style">
-                <!-- ʹ������defs �е�ͼ��ֻ��Ҫ use ��ǩ :xlink:href=����ָ�� id-->
+                <!-- 使用上面defs 中的图标只需要 use 标签 :xlink:href=属性指定 id -->
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('msite') !== -1? '#msiteActive' : '#msite'"></use>
             </svg>
             <span>DingDang</span>
@@ -70,7 +70,7 @@
         methods: {
             gotoAddress(path){
                 this.$router.push(path)
-            //����ʽ��ս
+            //函数式挑战
             }
         },
 
@@ -79,7 +79,7 @@
 </script>
 
 <style lang="scss" scoped>
-  /** ������ **/
+  /** 引入混合 **/
     @import '../../style/mixin';
 
     #foot_guide{

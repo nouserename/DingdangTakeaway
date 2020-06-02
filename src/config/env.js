@@ -1,10 +1,10 @@
 
 /**
- * ���ñ��뻷�������ϻ���֮����л�
+ * 配置编译环境和线上环境之间的切换
  * 
- * baseUrl: ������ַ
- * routerMode: ·��ģʽ
- * imgBaseUrl: ͼƬ����������ַ
+ * baseUrl: 域名地址
+ * routerMode: 路由模式
+ * imgBaseUrl: 图片所在域名地址
  * 
  */
 let baseUrl = ''; 
@@ -12,15 +12,15 @@ let routerMode = 'hash';
 let imgBaseUrl = '';
 
 
-if (process.env.NODE_ENV == 'development') { //����ǿ������� ͼƬ·������ img �ļ���
+if (process.env.NODE_ENV == 'development') { //如果是开发环境 图片路径就是 img 文件夹
     imgBaseUrl = '/img/';
 
-}else if(process.env.NODE_ENV == 'production'){//����������ͼƬ��Դ·�������·������
+}else if(process.env.NODE_ENV == 'production'){//生产环境下图片资源路径与基本路径配置
     baseUrl = '//39.106.104.0:8888'
     imgBaseUrl = '//39.106.104.0:8888/img/';
 }
 
-export { //���� url
+export { //导出 url
     baseUrl,
     routerMode,
     imgBaseUrl,

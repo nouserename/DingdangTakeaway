@@ -1,36 +1,39 @@
 /**
- * ´æ´¢localStorage
+ * åœ¨å•é¡µé¢åº”ç”¨ä¸­ç»å¸¸ä¼šç”¨åˆ°æœ¬åœ°å‚¨å­˜ï¼Œå­˜å‚¨åœ¨ localStorage çš„æ•°æ®å¯ä»¥é•¿æœŸä¿ç•™ï¼Œä½¿ç”¨ localstorage ä¸ vuex
+ * ç»“åˆæ›´èƒ½è½»æ¾åœ°è¿›è¡Œå…¨å±€çŠ¶æ€ç®¡ç†ï¼Œå¯¹å®ƒè¿›è¡Œç®€å•çš„å°è£…ã€‚ç§»åŠ¨ç«¯çš„ä¸‹æ‹‰åŠ è½½æ›´å¤šæ•°æ®ï¼Œè¿™æ ·æ‡’åŠ è½½æ–¹å¼æ˜¯ç»å¸¸çš„åº”ç”¨åœºæ™¯ï¼Œ
+ * æ‰€ä»¥ï¼Œå¯¹å…¶è¿›è¡Œå°è£…ï¼Œæ–¹ä¾¿åç»­ä¸åŒåœ°æ–¹éƒ½å¯ä»¥ç”¨åˆ°ã€‚æ›´å¥½çš„äº¤äº’ï¼ŒåŠ¨ç”»å‡½æ•°å¿…ä¸å¯å°‘ã€‚
+ * å­˜å‚¨localStorage
  */
 export const setStore = (name, content) => {
     if (!name) return;
     if (typeof content !== 'string') {
         content = JSON.stringify(content);
     }
-    window.localStorage.setItem(name, content); //ÔÚlocalstorageÖĞ´¢´æÒ»¸öÊı¾İ
+    window.localStorage.setItem(name, content); //åœ¨localstorageä¸­å­˜å‚¨ä¸€ä¸ªæ•°æ®
 }
 
 /**
- * »ñÈ¡localStorage
+ * è·å–localStorage
  */
 export const getStore = name => {
     if (!name) return;
-    return window.localStorage.getItem(name); //ÔÚlocalstorageÖĞ»ñÈ¡Ò»¸öÒÑ¾­´¢´æÊı¾İ
+    return window.localStorage.getItem(name); //åœ¨localstorageä¸­è·å–ä¸€ä¸ªå·²ç»å­˜å‚¨æ•°æ®
 }
 
 /**
- * É¾³ılocalStorage
+ * åˆ é™¤localStorage
  */
 export const removeStore = name => {
     if (!name) return;
-    window.localStorage.removeItem(name); //ÔÚlocalstorageÖĞÉ¾³ıÒ»¸öÖ¸¶¨Êı¾İ
+    window.localStorage.removeItem(name); //åœ¨localstorageä¸­åˆ é™¤ä¸€ä¸ªæŒ‡å®šæ•°æ®
 }
 
 /**
- * »ñÈ¡styleÑùÊ½
+ * è·å–styleæ ·å¼
  */
 export const getStyle = (element, attr, NumberMode = 'int') => {
     let target;
-    // scrollTop »ñÈ¡·½Ê½²»Í¬£¬Ã»ÓĞËü²»ÊôÓÚstyle£¬¶øÇÒÖ»ÓĞdocument.body²ÅÄÜÓÃ
+    // scrollTop è·å–æ–¹å¼ä¸åŒï¼Œæ²¡æœ‰å®ƒä¸å±äºstyleï¼Œè€Œä¸”åªæœ‰document.bodyæ‰èƒ½ç”¨
     if (attr === 'scrollTop') { 
         target = element.scrollTop;
     }else if(element.currentStyle){
@@ -38,12 +41,12 @@ export const getStyle = (element, attr, NumberMode = 'int') => {
     }else{ 
         target = document.defaultView.getComputedStyle(element,null)[attr]; 
     }
-    //ÔÚ»ñÈ¡ opactiy Ê±ĞèÒª»ñÈ¡Ğ¡Êı parseFloat
+    //åœ¨è·å–opacityæ—¶éœ€è¦è·å–å°æ•°parseFloat
     return  NumberMode == 'float'? parseFloat(target) : parseInt(target);
 } 
 
 /**
- * Ò³Ãæµ½´ïµ×²¿£¬¼ÓÔØ¸ü¶à
+ * é¡µé¢åˆ°è¾¾åº•éƒ¨ï¼ŒåŠ è½½æ›´å¤š
  */
 export const loadMore = (element, callback) => {
     let windowHeight = window.screen.height;
@@ -57,7 +60,7 @@ export const loadMore = (element, callback) => {
     document.body.addEventListener('scroll',() => {
        loadMore();
     }, false)
-    //ÔË¶¯¿ªÊ¼Ê±»ñÈ¡ÔªËØ ¸ß¶È ºÍ offseTop, pading, margin
+    //è¿åŠ¨å¼€å§‹æ—¶è·å–å…ƒç´ é«˜åº¦å’Œ offsetTopï¼Œpadingï¼Œmargin
     element.addEventListener('touchstart',() => {
         height = element.offsetHeight;
         setTop = element.offsetTop;
@@ -65,12 +68,12 @@ export const loadMore = (element, callback) => {
         marginBottom = getStyle(element,'marginBottom');
     },{passive: true})
 
-    //ÔË¶¯¹ı³ÌÖĞ±£³Ö¼àÌı scrollTop µÄÖµÅĞ¶ÏÊÇ·ñµ½´ïµ×²¿
+    //è¿åŠ¨è¿‡ç¨‹ä¸­ä¿æŒç›‘å¬ scrollTop çš„å€¼åˆ¤æ–­æ˜¯å¦åˆ°è¾¾åº•éƒ¨
     element.addEventListener('touchmove',() => {
        loadMore();
     },{passive: true})
 
-    //ÔË¶¯½áÊøÊ±ÅĞ¶ÏÊÇ·ñÓĞ¹ßĞÔÔË¶¯£¬¹ßĞÔÔË¶¯½áÊøÅĞ¶ÏÊÇ·Çµ½´ïµ×²¿
+    //è¿åŠ¨ç»“æŸæ—¶åˆ¤æ–­æ˜¯å¦æœ‰æƒ¯æ€§è¿åŠ¨ï¼Œæƒ¯æ€§è¿åŠ¨ç»“æŸåˆ¤æ–­æ˜¯å¦åˆ°è¾¾åº•éƒ¨
     element.addEventListener('touchend',() => {
            oldScrollTop = document.body.scrollTop;
            moveEnd();
@@ -84,7 +87,7 @@ export const loadMore = (element, callback) => {
                 moveEnd();
             }else{
                 cancelAnimationFrame(requestFram);
-                //ÎªÁË·ÀÖ¹Êó±êÌ§ÆğÊ±ÒÑ¾­äÖÈ¾ºÃÊı¾İ´Ó¶øµ¼ÖÂÖØ»ñÈ¡Êı¾İ£¬Ó¦¸ÃÖØĞÂ»ñÈ¡dom¸ß¶È
+                //ä¸ºäº†é˜²æ­¢é¼ æ ‡æŠ¬èµ·æ—¶å·²ç»æ¸²æŸ“å¥½æ•°æ®ä»è€Œå¯¼è‡´é‡è·å–æ•°æ®ï¼Œåº”è¯¥é‡æ–°è·å–domé«˜åº¦
                 height = element.offsetHeight;
                 loadMore();
             }
@@ -99,7 +102,7 @@ export const loadMore = (element, callback) => {
 }
 
 /**
- * ÏÔÊ¾·µ»Ø¶¥²¿°´Å¥£¬¿ªÊ¼¡¢½áÊø¡¢ÔË¶¯ Èı¸ö¹ı³ÌÖĞµ÷ÓÃº¯ÊıÅĞ¶ÏÊÇ·ñ´ïµ½Ä¿±êµã
+ * æ˜¾ç¤ºè¿”å›é¡¶éƒ¨æŒ‰é’®ï¼Œå¼€å§‹ã€ç»“æŸã€è¿åŠ¨ä¸‰ä¸ªè¿‡ç¨‹ä¸­è°ƒç”¨å‡½æ•°åˆ¤æ–­æ˜¯å¦è¾¾åˆ°ç›®æ ‡ç‚¹
  */
 export const showBack = callback => {
     let requestFram;
@@ -133,7 +136,7 @@ export const showBack = callback => {
         })
     }
 
-    //ÅĞ¶ÏÊÇ·ñ´ïµ½Ä¿±êµã
+    //åˆ¤æ–­æ˜¯å¦è¾¾åˆ°ç›®æ ‡ç‚¹
     const showBackFun = () => {
         if (document.body.scrollTop > 500) {
             callback(true);
@@ -145,17 +148,17 @@ export const showBack = callback => {
 
 
 /**
- * ÔË¶¯Ğ§¹û
- * @param {HTMLElement} element   ÔË¶¯¶ÔÏó£¬±ØÑ¡
- * @param {JSON}        target    ÊôĞÔ£ºÄ¿±êÖµ£¬±ØÑ¡
- * @param {number}      duration  ÔË¶¯Ê±¼ä£¬¿ÉÑ¡
- * @param {string}      mode      ÔË¶¯Ä£Ê½£¬¿ÉÑ¡
- * @param {function}    callback  ¿ÉÑ¡£¬»Øµ÷º¯Êı£¬Á´Ê½¶¯»­
+ * è¿åŠ¨æ•ˆæœ
+ * @param {HTMLElement} element   è¿åŠ¨å¯¹è±¡ï¼Œå¿…é€‰
+ * @param {JSON}        target    å±æ€§ï¼šç›®æ ‡å€¼ï¼Œå¿…é€‰
+ * @param {number}      duration  è¿åŠ¨æ—¶é—´ï¼Œå¯é€‰
+ * @param {string}      mode      è¿åŠ¨æ¨¡å¼ï¼Œå¯é€‰
+ * @param {function}    callback  å¯é€‰ï¼Œå›è°ƒå‡½æ•°ï¼Œé“¾å¼åŠ¨ç”»
  */
 export const animate = (element, target, duration = 400, mode = 'ease-out', callback) => {
     clearInterval(element.timer);
 
-    //ÅĞ¶Ï²»Í¬²ÎÊıµÄÇé¿ö
+    //åˆ¤æ–­ä¸åŒå‚æ•°çš„æƒ…å†µ
     if (duration instanceof Function) {
         callback = duration;
         duration = 400;
@@ -164,13 +167,13 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
         duration = 400;
     }
 
-    //ÅĞ¶Ï²»Í¬²ÎÊıµÄÇé¿ö
+    //åˆ¤æ–­ä¸åŒå‚æ•°çš„æƒ…å†µ
     if (mode instanceof Function) {
         callback = mode;
         mode = 'ease-out';
     }
 
-    //»ñÈ¡domÑùÊ½
+    //è·å–domæ ·å¼
     const attrStyle = attr => {
         if (attr === "opacity") { 
             return Math.round(getStyle(element, attr, 'float') * 100);
@@ -178,13 +181,13 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
             return getStyle(element, attr);
         }
     }
-    //¸ù×ÖÌå´óĞ¡£¬ĞèÒª´Ó´Ë½« rem ¸Ä³É px ½øĞĞÔËËã
+    //æ ¹å­—ä½“å¤§å°ï¼Œéœ€è¦ä»æ­¤å°† rem æ”¹æˆ px è¿›è¡Œè¿ç®—
     const rootSize = parseFloat(document.documentElement.style.fontSize);
 
     const unit = {};
     const initState = {};
 
-    //»ñÈ¡Ä¿±êÊôĞÔµ¥Î»ºÍ³õÊ¼ÑùÊ½Öµ
+    //è·å–ç›®æ ‡å±æ€§å•ä½å’Œåˆå§‹æ ·å¼å€¼
     Object.keys(target).forEach(attr => {
         if (/[^\d^\.]+/gi.test(target[attr])) {
             unit[attr] = target[attr].match(/[^\d^\.]+/gi)[0] || 'px';
@@ -194,7 +197,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
         initState[attr] = attrStyle(attr);
     });
 
-    //È¥µô´«ÈëµÄºó×ºµ¥Î»
+    //å»æ‰ä¼ å…¥çš„åç¼€å•ä½
     Object.keys(target).forEach(attr => {
         if (unit[attr] == 'rem') {
             target[attr] = Math.ceil(parseInt(target[attr])*rootSize);
@@ -204,15 +207,15 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
     });
 
 
-    let flag = true; //¼ÙÉèËùÓĞÔË¶¯µ½´ïÖÕµã
-    const remberSpeed = {};//¼ÇÂ¼ÉÏÒ»¸öËÙ¶ÈÖµ,ÔÚease-inÄ£Ê½ÏÂĞèÒªÓÃµ½
+    let flag = true; //å‡è®¾æ‰€æœ‰è¿åŠ¨åˆ°è¾¾ç»ˆç‚¹
+    const remberSpeed = {};//è®°å½•ä¸Šä¸€ä¸ªé€Ÿåº¦å€¼ï¼Œåœ¨ease-inæ¨¡å¼ä¸‹éœ€è¦ç”¨åˆ°
     element.timer = setInterval(() => {
         Object.keys(target).forEach(attr => {
-            let iSpeed = 0;  //²½³¤
-            let status = false; //ÊÇ·ñÈÔĞèÔË¶¯
-            let iCurrent = attrStyle(attr) || 0; //µ±Ç°ÔªËØÊôĞÔÖ·
-            let speedBase = 0; //Ä¿±êµãĞèÒª¼õÈ¥µÄ»ù´¡Öµ£¬ÈıÖÖÔË¶¯×´Ì¬µÄÖµ¶¼²»Í¬
-            let intervalTime; //½«Ä¿±êÖµ·ÖÎª¶àÉÙ²½Ö´ĞĞ£¬ÊıÖµÔ½´ó£¬²½³¤Ô½Ğ¡£¬ÔË¶¯Ê±¼äÔ½³¤
+            let iSpeed = 0;  //æ­¥é•¿
+            let status = false; //æ˜¯å¦ä»éœ€è¿åŠ¨
+            let iCurrent = attrStyle(attr) || 0; //å½“å‰å…ƒç´ å±æ€§å€
+            let speedBase = 0; //ç›®æ ‡ç‚¹éœ€è¦å‡å»çš„åŸºç¡€å€¼ï¼Œä¸‰ç§è¿åŠ¨çŠ¶æ€çš„å€¼éƒ½ä¸åŒ
+            let intervalTime; //å°†ç›®æ ‡å€¼åˆ†ä¸ºå¤šå°‘æ­¥æ‰§è¡Œï¼Œæ•°å€¼è¶Šå¤§ï¼Œæ­¥é•¿è¶Šå°ï¼Œè¿åŠ¨æ—¶é—´è¶Šé•¿
             switch(mode){
                 case 'ease-out': 
                     speedBase = iCurrent;
@@ -235,7 +238,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
                 iSpeed = (target[attr] - speedBase) / intervalTime;
                 iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
             }
-            //ÅĞ¶ÏÊÇ·ñ´ï²½³¤Ö®ÄÚµÄÎó²î¾àÀë£¬Èç¹ûµ½´ïËµÃ÷µ½´ïÄ¿±êµã
+            //åˆ¤æ–­æ˜¯å¦è¾¾æ­¥é•¿ä¹‹å†…çš„è¯¯å·®è·ç¦»ï¼Œå¦‚æœåˆ°è¾¾è¯´æ˜åˆ°è¾¾ç›®æ ‡ç‚¹
             switch(mode){
                 case 'ease-out': 
                     status = iCurrent != target[attr]; 
@@ -252,7 +255,7 @@ export const animate = (element, target, duration = 400, mode = 'ease-out', call
 
             if (status) {
                 flag = false; 
-                //opacity ºÍ scrollTop ĞèÒªÌØÊâ´¦Àí
+                //opacity å’Œ scrollTop éœ€è¦ç‰¹æ®Šå¤„ç†
                 if (attr === "opacity") {
                     element.style.filter = "alpha(opacity:" + (iCurrent + iSpeed) + ")";
                     element.style.opacity = (iCurrent + iSpeed) / 100;

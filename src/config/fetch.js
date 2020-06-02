@@ -1,17 +1,17 @@
-// ÒýÈë»ù´¡ÇëÇó url
+//å¼•å…¥åŸºç¡€è¯·æ±‚ url
 import {
     baseUrl
 } from './env'
 
-// ¶¨Òå²¢µ¼³öÒ»¸öÇëÇó Òì²½ º¯Êý
+//å®šä¹‰å¹¶å¯¼å‡ºä¸€ä¸ªè¯·æ±‚ å¼‚æ­¥ å‡½æ•°
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
-    //½« http ÇëÇó·½Ê½×ª»»³É´óÐ´
+    //å°†httpè¯·æ±‚æ–¹å¼è½¬æ¢æˆå¤§å†™
     type = type.toUpperCase();
-    //Æ´½ÓÇëÇóµØÖ·
+    //æ‹¼æŽ¥è¯·æ±‚åœ°å€
     url = baseUrl + url;
-    //Èç¹û ÇëÇó·½Ê½Îª GET 
+    //å¦‚æžœè¯·æ±‚æ–¹å¼ æœªGET
     if (type == 'GET') {
-        let dataStr = ''; //Êý¾ÝÆ´½Ó×Ö·û´®
+        let dataStr = ''; //æ•°æ®æ‹¼æŽ¥å­—ç¬¦ä¸²
         Object.keys(data).forEach(key => {
             dataStr += key + '=' + data[key] + '&';
         })
@@ -21,9 +21,9 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             url = url + '?' + dataStr;
         }
     }
-    // Èç¹ûÇëÇó·½·¨Îª fetch ºÍä¯ÀÀÆ÷Ö§³Ö fetch ·½·¨£¬¾ÍÊ¹ÓÃ fetch ½øÐÐÊý¾ÝÇëÇó
+    //å¦‚æžœè¯·æ±‚æ–¹å¼æœªfetchå’Œæµè§ˆå™¨æ”¯æŒfetchæ–¹æ³•ï¼Œå°±ä½¿ç”¨fetchè¿›è¡Œæ•°æ®è¯·æ±‚
     if (window.fetch && method == 'fetch') {
-        let requestConfig = { //¹¹ÔìÇëÇóÅäÖÃ
+        let requestConfig = { //æž„é€ è¯·æ±‚é…ç½®
             credentials: 'include',
             method: type,
             headers: {
@@ -33,7 +33,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             mode: "cors",
             cache: "force-cache"
         }
-        //Èç¹û http ÇëÇó·½Ê½ÎªPOST 
+        //å¦‚æžœhttpè¯·æ±‚æ–¹å¼ä¸ºPOST
         if (type == 'POST') {
             Object.defineProperty(requestConfig, 'body', {
                 value: JSON.stringify(data)
@@ -41,7 +41,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
         }
 
         try {
-            // Ê¹ÓÃ fetch ÇëÇó
+            //ä½¿ç”¨fetchè¯·æ±‚
             const response = await fetch(url, requestConfig);
             const responseJson = await response.json();
             return responseJson
@@ -49,7 +49,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             throw new Error(error)
         }
     } else {
-        // Èç¹ûä¯ÀÀÆ÷²»Ö§³Ö fetch £¬¾ÍÊ¹ÓÃ XMLHttpRequest ·½·¨½øÐÐ ajax ÇëÇó£¬²¢ÇÒÊ¹ÓÃ Promise ½øÐÐ·â×°
+        //å¦‚æžœæµè§ˆå™¨ä¸æ”¯æŒfetchï¼Œå°±ä½¿ç”¨XMLHttpRequestæ–¹æ³•è¿›è¡Œajaxè¯·æ±‚ï¼Œå¹¶ä¸”ä½¿ç”¨Promiseè¿›è¡Œå°è£…
         return new Promise((resolve, reject) => {
             let requestObj;
             if (window.XMLHttpRequest) {

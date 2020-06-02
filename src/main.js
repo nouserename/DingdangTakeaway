@@ -4,9 +4,9 @@ import Vue from 'vue'
 import router from './router'
 import App from './App';
 import store from './store';
-//引入 rem 移动端适配方案
+//寮曞叆rem绉诲姩绔�傞厤鏂规
 import './config/rem'
-Vue.config.productionTip = false
+VutionTip e.config.produc= false
 
 new Vue({
   el: '#app',

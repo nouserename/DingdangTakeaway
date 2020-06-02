@@ -1,7 +1,13 @@
+/*
+ * 提高性能，使用路由按需加载，使用 import 加载路由，webpack
+ * 打包时会分成 chunk 片段，这样就可以实现按需加载，要用哪个路由
+ * 组件，就加载那个，提高效率。
+ * 
+*/
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from '../App'
-Vue.use(Router)
+import App from '../App' //引入 APP.vue
+Vue.use(Router) //在vue中注册 vue-router
 
 const home = () => import('../page/home/home')
 const city = () => import('../page/city/city')
